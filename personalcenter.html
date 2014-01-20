@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="gogowisestyle/js/jquery-1.10.2.min.js"></script>
+	<title>Personal Center</title>
+	<script type="text/javascript"> 
+	 var SysSecond; 
+	 var InterValObj; 
+
+	 $(document).ready(function() { 
+	  SysSecond = parseInt($("#remainSeconds").html()); 
+	  InterValObj = window.setInterval(SetRemainTime, 1000); 
+	 }); 
+
+	 
+	 function SetRemainTime() { 
+		  if (SysSecond > 0) { 
+		   SysSecond = SysSecond - 1; 
+		   var second = Math.floor(SysSecond % 60);             
+		   var minite = Math.floor((SysSecond / 60) % 60);      
+		   var hour = Math.floor((SysSecond / 3600) % 24);      
+		   var day = Math.floor((SysSecond / 3600) / 24);        
+
+		   	$("#remainTime").html("Start: " +day + "d " + hour + "h " + minite + "m " + second + "s "); 
+		  	} 
+		  	else 
+		  	{
+		   		window.clearInterval(InterValObj); 
+		  	} 
+	 } 
+	 
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div class="thinline"></div>
+		<br/>
+		<div class="row">
+
+			<div class="col-sm-4">
+				<div class="basePanelshadow" style="text-align: center;">
+					<div class="basePanelGrey">Hall(School name)</div>
+
+					<br/>
+					<div class="list-group">
+
+						<a href="#" class="list-group-item active">
+							<img src="gogowisestyle/image/icon_video_action.png" class="centerIcon">
+							<h4 class="list-group-item-heading">The choice of computer is dictated by our special needs.</h4>
+							<p class="list-group-item-text">20:00-22:00</p>
+							<p class="list-group-item-text">Lecturer:Name</p>
+						</a>
+
+						<a href="#" class="list-group-item">
+							<img src="gogowisestyle/image/icon_video.png" class="centerIcon">
+							<h4 class="list-group-item-heading">
+								Students are flocking to such fields as genetics and molecular biology.
+							</h4>
+							<p class="list-group-item-text">15:00-17:00</p>
+							<p class="list-group-item-text">Lecturer:Name</p>
+						</a>
+
+						<a href="#" class="list-group-item">
+							<h4 class="list-group-item-heading">
+								As these trends continue, what will happen to the desktop and where will it live?
+							</h4>
+							<p class="list-group-item-text">9:00-11:30</p>
+							<p class="list-group-item-text">Lecturer:Name</p>
+						</a>
+
+						<a href="#" class="list-group-item">
+							<h4 class="list-group-item-heading">This is a seminar for mathematics majors......</h4>
+							<p class="list-group-item-text">14:00-14:30</p>
+							<p class="list-group-item-text">Lecturer:Name</p>
+						</a>
+						<button type="button" class="btn btn-primary btn-xs btn-block">View School Video</button>
+						<div id="page">
+							<ul class="pagination">
+								<li>
+									<a href="#">&laquo;</a>
+								</li>
+								<li>
+									<a href="#">1</a>
+								</li>
+								<li>
+									<a href="#">2</a>
+								</li>
+								<li class="active">
+									<a href="#">3</a>
+								</li>
+								<li>
+									<a href="#">4</a>
+								</li>
+								<li>
+									<a href="#">5</a>
+								</li>
+								<li>
+									<a href="#">&raquo;</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+
+				<br/>
+
+				<div class="basePanelshadow">
+					<div class="basePanelBlueGrey">Discussion Room</div>
+
+					<br/>
+					<div class="list-group">
+						<a href="#" class="list-group-item active">
+							<h4 class="list-group-item-heading">The choice of computer is dictated by our special needs.</h4>
+							<p class="list-group-item-text">20:00-22:00</p>
+							<p class="list-group-item-text">Lecturer:Name</p>
+						</a>
+
+						<a href="#" class="list-group-item">
+							<h4 class="list-group-item-heading">
+								Students are flocking to such fields as genetics and molecular biology.
+							</h4>
+							<p class="list-group-item-text">15:00-17:00</p>
+							<p class="list-group-item-text">Lecturer:Name</p>
+						</a>
+
+						<a href="#" class="list-group-item">
+							<h4 class="list-group-item-heading">
+								As these trends continue, what will happen to the desktop and where will it live?
+							</h4>
+							<p class="list-group-item-text">9:00-11:30</p>
+							<p class="list-group-item-text">Lecturer:Name</p>
+						</a>
+
+					</div>
+					<button type="button" class="btn btn-success btn-lg btn-block">Booking</button>
+
+				</div>
+			</div>
+
+			<div class="col-sm-8">
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="basePanelTextLeftAbsolute">
+							<h3 class="courseSubhead">My courses</h3>
+
+							<ul class="list-inline" style="background-color: #6ab600;color: #fff;border-radius: 4px; padding-top: 3px;padding-bottom: 3px;">
+								<li>Lesson 6</li>
+								<li></li>
+								<li>Lecturer:Name</li>
+								<li></li>
+
+								<li>
+									<div id="remainSeconds" style="display:none">100000</div>
+									<div id="remainTime" style="width: 134px;">Start:</div>
+								</li>
+								<li style="margin-left: 40px;">
+									<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">more</button>
+								</li>
+							</ul>
+
+							<div class="media">
+								<a class="pull-left" href="#">
+									<div class="mycourseImg ">
+										<img src="gogowisestyle/image/recommended3.jpg"  class="media-object" alt=""></div>
+								</a>
+								<div class="media-body">
+									<h4 class="media-heading" style="color: #6ab600;text-overflow : clip;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">Media heading</h4>
+									<span>
+										Students are flocking to such fields as genetics and molecular biology.
+									</span>
+								</div>
+							</div>
+							<p class="text-right">2013-1-24 20:00</p>
+							<div class="progress progress-striped active">
+								<div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+									<span class="sr-only">45% Complete</span>
+								</div>
+							</div>
+
+							<button type="button" class="btn btn-success btn-lg btn-block">Enter</button>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="basePanelTextLeftAbsolute">
+							<div  style="float: right;padding-top: 25px;">
+								<button type="button" class="btn btn-success btn-xs">more</button>
+							</div>
+							<h3 class="courseSubhead">My affair</h3>
+
+							<div class="thickline"></div>
+
+							<div>
+								<a href="#">
+								<img src="gogowisestyle/image/icon_mail.png" class="centerIcon">
+								<div class="messageGreen1">Message 1</div>
+								</a>
+							</div>
+							<div>
+								<a href="#">
+								<img src="gogowisestyle/image/icon_mail.png" class="centerIcon">
+								<div class="messageGreen2">Message 2</div>
+								</a>
+							</div>
+							<div>
+								<a href="#">
+								<img src="gogowisestyle/image/icon_mail.png" class="centerIcon">
+								<div class="messageGreen3">Message 3</div>
+								</a>
+							</div>
+							<div>
+								<a href="#">
+								<img src="gogowisestyle/image/icon_mail.png" class="centerIcon">
+								<div class="messageGreen4">Message 4</div>
+								</a>
+							</div>
+							<div>
+								<a href="#">
+								<img src="gogowisestyle/image/icon_mail.png" class="centerIcon">
+								<div class="messageGreen5">Message 5</div>
+								</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<br/>
+				<div class="basePanelTextLeft">
+					<h3 class="courseSubhead">Recommend School</h3>
+					<div class="thickline"></div>
+					<div class="row">
+						<div class="col-sm-4">
+							<a href="#">
+								<div class="recommendedSchool">
+									<img src="gogowisestyle/image/logo_school1.jpg" alt="">
+									<span>Introduction to Public Speaking</span>
+								</div>
+							</a>
+						</div>
+						<div class="col-sm-4">
+							<a href="#">
+								<div class="recommendedSchool">
+									<img src="gogowisestyle/image/logo_school2.jpg" alt="">
+									<span>Introduction to Public Speaking</span>
+								</div>
+							</a>
+						</div>
+
+						<div class="col-sm-4">
+							<a href="#">
+								<div class="recommendedSchool">
+									<img src="gogowisestyle/image/logo_school3.jpg" alt="">
+									<span>Introduction to Public Speaking</span>
+								</div>
+							</a>
+						</div>
+					</div>
+					<a href="#">
+						<p class="text-right">more</p>
+					</a>
+				</div>
+				<br/>
+				<div class="basePanelTextLeft">
+					<h3 class="courseSubhead">Recommend Courses</h3>
+					<div class="thickline"></div>
+					<div class="row">
+						<div class="col-sm-4">
+							<a href="#">
+								<div class="recommended">
+									<img src="gogowisestyle/image/recommended1.jpg" alt="">
+									<span>Introduction to Public Speaking</span>
+								</div>
+							</a>
+						</div>
+						<div class="col-sm-4">
+							<a href="#">
+								<div class="recommended">
+									<img src="gogowisestyle/image/recommended7.jpg" alt="">
+									<span>Introduction to Public Speaking</span>
+								</div>
+							</a>
+						</div>
+						<div class="col-sm-4">
+							<a href="#">
+								<div class="recommended">
+									<img src="gogowisestyle/image/recommended9.jpg" alt="">
+									<span>Introduction to Public Speaking</span>
+								</div>
+							</a>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-sm-4">
+							<a href="#">
+								<div class="recommended">
+									<img src="gogowisestyle/image/recommended2.jpg" alt="">
+									<span>Introduction to Public Speaking</span>
+								</div>
+							</a>
+						</div>
+						<div class="col-sm-4">
+							<a href="#">
+								<div class="recommended">
+									<img src="gogowisestyle/image/recommended6.jpg" alt="">
+									<span>Introduction to Public Speaking</span>
+								</div>
+							</a>
+						</div>
+						<div class="col-sm-4">
+							<a href="#">
+								<div class="recommended">
+									<img src="gogowisestyle/image/recommended4.jpg" alt="">
+									<span>Introduction to Public Speaking</span>
+								</div>
+							</a>
+						</div>
+					</div>
+					<a href="#">
+						<p class="text-right">more</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Courses</h4>
+				</div>
+				<div class="modal-body">
+
+					<div class="courseItem">
+						<ul class="list-inline" style="background-color: #6ab600;color: #fff;border-radius: 4px; padding-top: 3px;padding-bottom: 3px;">
+							<li>Lesson 6</li>
+							<li>Lecturer:Name</li>
+
+							<li>
+								<div>Start:2013-1-24 20:00</div>
+							</li>
+						</ul>
+
+						<div class="media">
+							<a class="pull-left" href="#">
+								<div class="mycourseImg ">
+									<img src="gogowisestyle/image/recommended3.jpg"  class="media-object" alt=""></div>
+
+							</a>
+							<div class="media-body">
+								<h4 class="media-heading" style="color: #6ab600;">Media heading</h4>
+								Students are flocking to such fields as genetics and molecular biology.
+									Students are flocking to such fields as genetics and molecular biology.
+									Students are flocking to such fields as genetics and molecular biology.
+							</div>
+						</div>
+						<br/>
+						<div class="progress progress-striped active">
+							<div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
+								<span class="sr-only">45% Complete</span>
+							</div>
+
+						</div>
+						<button type="button" class="btn btn-success btn-xs btn-block">View Course</button>
+					</div>
+
+					<div class="thinlineGray"></div>
+
+					<div class="courseItem">
+						<ul class="list-inline" style="background-color: #6ab600;color: #fff;border-radius: 4px; padding-top: 3px;padding-bottom: 3px;">
+							<li>Lesson 6</li>
+							<li>Lecturer:Name</li>
+
+							<li>
+								<div>Start:2013-1-24 20:00</div>
+							</li>
+						</ul>
+
+						<div class="media">
+							<a class="pull-left" href="#">
+								<div class="mycourseImg ">
+									<img src="gogowisestyle/image/recommended7.jpg"  class="media-object" alt=""></div>
+							</a>
+
+							<div class="media-body">
+								<h4 class="media-heading" style="color: #6ab600;">Media heading</h4>
+								Students are flocking to such fields as genetics and molecular biology.
+									Students are flocking to such fields as genetics and molecular biology.
+									Students are flocking to such fields as genetics and molecular biology.
+							</div>
+
+						</div>
+						<br/>
+						<div class="progress progress-striped active">
+							<div class="progress-bar progress-bar-warning"  role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+								<span class="sr-only">65% Complete</span>
+							</div>
+						</div>
+						<button type="button" class="btn btn-success btn-xs btn-block">View Course</button>
+					</div>
+
+					<div class="thinlineGray"></div>
+
+					<div class="courseItem">
+						<ul class="list-inline" style="background-color: #6ab600;color: #fff;border-radius: 4px; padding-top: 3px;padding-bottom: 3px;">
+							<li>Lesson 6</li>
+							<li>Lecturer:Name</li>
+
+							<li>
+								<div>Start:2013-1-24 20:00</div>
+							</li>
+						</ul>
+
+						<div class="media">
+							<a class="pull-left" href="#">
+								<div class="mycourseImg ">
+									<img src="gogowisestyle/image/recommended7.jpg"  class="media-object" alt=""></div>
+							</a>
+
+							<div class="media-body">
+								<h4 class="media-heading" style="color: #6ab600;">Media heading</h4>
+								Students are flocking to such fields as genetics and molecular biology.
+									Students are flocking to such fields as genetics and molecular biology.
+									Students are flocking to such fields as genetics and molecular biology.
+							</div>
+
+						</div>
+						<br/>
+						<div class="progress progress-striped active">
+							<div class="progress-bar progress-bar-danger"  role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+								<span class="sr-only">90% Complete</span>
+							</div>
+						</div>
+						<button type="button" class="btn btn-success btn-xs btn-block">View Course</button>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

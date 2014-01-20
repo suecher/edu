@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="gogowisestyle/js/jquery-1.10.2.min.js"></script>
+
+
+	<script type="text/javascript">
+        
+        $(document).ready(function() { 
+			$("#btnTest").click(function(){
+				alert();
+			});
+		});
+
+		function getGirlOjbect() {
+		    if (/msie/.test(navigator.userAgent.toLowerCase())) {
+		        return  document.getElementById("Girl");
+		    } else {
+		        return  document.getElementById("GirlEmbed");
+		    }
+		}
+
+		
+
+  	</script>
+	
+	<title>Document</title>
+
+</head>
+<body>
+	<div>
+		<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" name="Girl" width="1004" height="630" id="Girl" wmode="transparent" class="flash_obj">
+          <param name="movie" value="Teacher_1_to_M.swf" />
+          <param name="quality" value="high" />
+          <param name="wmode" value="transparent" />
+          <param name="allowFullScreen" value="true" />
+          <embed src="Teacher_1_to_M.swf" allowFullScreen="true" width="1004" height="630" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" wmode="transparent" name="Girl" id="GirlEmbed"></embed>
+        </object>
+</div>
+<div>
+	<button type="button" class="btn btn-success" id="btnTest">测试</button>
+</div>
+</body>
+</html>

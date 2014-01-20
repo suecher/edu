@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="gogowisestyle/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="gogowisestyle/css/bootstrap.min.css">
+
+  <title>bind demo</title>
+  <style>
+  p {
+    background: yellow;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px;
+  }
+  p.over {
+     background: #ccc;
+  }
+  span {
+    color: red;
+  }
+  </style>
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+      $("#btnTest1").click(function(){
+          $('#myTab a[href="#home"]').tab('show');
+      });
+
+      $('#myTab a[href="#home"]').click(function(){
+          alert(1);
+      });
+
+    });
+    
+  </script>
+ 
+
+</head>
+<body>
+<ul class="nav nav-tabs" id="myTab">
+  <li><a href="#home" data-toggle="tab">Home</a></li>
+  <li><a href="#profile" data-toggle="tab">Profile</a></li>
+  <li><a href="#messages" data-toggle="tab">Messages</a></li>
+  <li><a href="#settings" data-toggle="tab">Settings</a></li>
+</ul>
+  
+<div class="tab-content">
+  <div class="tab-pane active" id="home">1</div>
+  <div class="tab-pane" id="profile">2</div>
+  <div class="tab-pane" id="messages">3</div>
+  <div class="tab-pane" id="settings">4</div>
+</div>
+
+<button type="button" class="btn btn-success" id="btnTest1">Test Btn1</button>
+<button type="button" class="btn btn-success" id="btnTest2">Test Btn2</button>
+</body>
+</html>
