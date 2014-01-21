@@ -4,64 +4,131 @@
 	<meta charset="UTF-8">
 	<script src="gogowisestyle/js/bootstrap-datetimepicker.min.js"></script>
 	<link rel="stylesheet" href="gogowisestyle/css/bootstrap-datetimepicker.min.css">
-	
+
 	<title>Booking</title>
 	<script type="text/javascript">
-    $('.form_datetime').datetimepicker({
-        //language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		forceParse: 0,
-        showMeridian: 1
-    });
-	$('.form_date').datetimepicker({
-        language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0
-    });
-	$('.form_time').datetimepicker({
-        language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 1,
-		minView: 0,
-		maxView: 1,
-		forceParse: 0
+    $("#datetimepicker").datetimepicker({
+        format: "dd MM yyyy - hh:ii",
+        autoclose: true,
+        todayBtn: true,
+        pickerPosition: "bottom-left"
     });
 </script>
 </head>
 <body>
 	<div class="container">
-		
 		<div class="row">
-		<div class="col-sm-4">
-			<div class="basePanelTextLeft">
-				1
+			<div class="col-sm-5">
+				<div class="basePanelTextLeft">
+					<div class="form-group">
+
+						<label for="dtp_input2">Date Picking</label>
+						<div class="input-append date" id="datetimepicker" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+							<input class="form-control" size="16" type="text" value="12-02-2012">
+							<span class="input-group-addon">
+									<span class="glyphicon glyphicon-remove"></span>
+								</span>
+								<span class="input-group-addon">
+									<span class="glyphicon glyphicon-calendar"></span>
+								</span>
+						</div>
+
+						<div class="form-group">
+
+							<div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+								<input class="form-control" size="16" type="text" value="" readonly>
+								<span class="input-group-addon">
+									<span class="glyphicon glyphicon-remove"></span>
+								</span>
+								<span class="input-group-addon">
+									<span class="glyphicon glyphicon-calendar"></span>
+								</span>
+							</div>
+							<input type="hidden" id="dtp_input2" value="" />
+							<br/>
+						</div>
+
+					</div>
+					<div class="form-group">
+						<input type="hidden" id="dtp_input2" value="" />
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="col-sm-8">
-			<div class="basePanelTextLeft">
-				<div class="form-group">
-                <label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>
-                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                    <input class="form-control" size="16" type="text" value="" readonly>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-					<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-                </div>
-				<input type="hidden" id="dtp_input3" value="" /><br/>
-            </div>
+			<div class="col-sm-7" style="">
+
+				<div class="row">
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-primary btn-sm btn-block">
+							<span class="glyphicon glyphicon-time" style="margin-right: 20px;"></span>
+							AM 8:00 - AM 9:00
+						</button>
+					</div>
+
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-default btn-sm btn-block">PM 1:00 - PM 2:00</button>
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-default btn-sm btn-block">AM 9:00 - AM 10:00</button>
+					</div>
+
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-primary btn-sm btn-block">
+							<span class="glyphicon glyphicon-time" style="margin-right: 20px;"></span>
+							PM 2:00 - PM 3:00
+						</button>
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-primary btn-sm btn-block">
+							<span class="glyphicon glyphicon-time" style="margin-right: 20px;"></span>
+							AM 10:00 - AM 11:00
+						</button>
+					</div>
+
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-default btn-sm btn-block">PM 3:00 - PM 4:00</button>
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-primary btn-sm btn-block">
+							<span class="glyphicon glyphicon-time" style="margin-right: 20px;"></span>
+							AM 11:00 - PM 12:00
+						</button>
+					</div>
+
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-default btn-sm btn-block" style="color: #6ab600;">
+							<span class="glyphicon glyphicon-ok" style="margin-right: 20px;color: #6ab600;"></span>
+							PM 4:00 - PM 5:00
+						</button>
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-sm-6"></div>
+
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-default btn-sm btn-block">PM 5:00 - PM 6:00</button>
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-sm-6"></div>
+
+					<div class="col-sm-6">
+						<button type="button" class="btn btn-default btn-sm btn-block">PM 5:00 - PM 6:00</button>
+					</div>
+				</div>
+				<br/>
 			</div>
-		</div>
+
 		</div>
 	</div>
 </body>
