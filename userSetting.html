@@ -2,14 +2,34 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<script src="gogowisestyle/js/bootstrap-datepicker.js"></script>
+	<link rel="stylesheet" href="gogowisestyle/css/datepicker3.css">
+	<script src="gogowisestyle/js/icheck.min.js"></script>
+	<link rel="stylesheet" href="gogowisestyle/skins/all.css">
+	
 	<title>Setting UserInfo</title>
+	<script type="text/javascript">
+		$('#txtBirthday').datepicker({
+		    orientation: "top left",
+		    autoclose: true
+		});
+
+		$('input').iCheck({
+			    checkboxClass: 'icheckbox_polaris',
+			    radioClass: 'iradio_square red',
+			    increaseArea: '20%' // optional
+			  });
+	</script>
 </head>
 <body>
+	
 	<div class="container">
+		
 		<div class="thinline"></div>
 		<br/>
-		
-		<div class="col-sm-6">
+
+		<div class="col-sm-7">
+
 			<div class="basePanelTextLeft">
 				<h1 class = "courseSubject">User info</h1>
 				<form class="form-horizontal" role="form">
@@ -20,43 +40,67 @@
 						<label>Real Name</label>
 						<input type="text" class="form-control"  placeholder="Real Name"></div>
 					<div class="form-group">
-						<label>Email</label>
-						<input type="email" class="form-control"  placeholder="Email"></div>
-					
+						<label>Birthday</label>
+						<input type="text" class="form-control"  placeholder="Birthday" class="form_datetime" id="txtBirthday"></div>
 
 					<div class="form-group">
 						<label>Sex</label>
 						<br/>
-						<label>
-							<input type="radio" name="selectQuestion" value="2">
-							<span class="questionsItemText">Male</span>
+						<label style="width: 100px;">
+							<input type="radio" name="sex" value="0" >
+							<span>Male</span>
 						</label>
+						
 						<label>
-							<input type="radio" name="selectQuestion" value="2">
-							<span class="questionsItemText">Female</span>
+							<input type="radio" name="sex" value="1">
+							<span>Female</span>
 						</label>
 					</div>
-
-					<div class="form-group">
-						<label>Identification Number</label>
-						<input type="text" class="form-control" placeholder="Identification Number"></div>
+					
 					<div class="form-group">
 						<label>Self introduction</label>
 						<textarea type="text" class="form-control" placeholder="Self introduction"  rows="3" ></textarea>
 					</div>
 					<div class="form-group">
+						<label>Email</label>
+						<input type="email" class="form-control"  placeholder="Email" disabled></div>
+					
+					<div class="form-group">
 						<label>Registration Time：</label>
-						<label>2014-1-24</label>
+						<input type="email" class="form-control" placeholder="2013-1-24" disabled>
 					</div>
 					<div class="form-group">
 						<label>Last Logging in Time：</label>
-						<label>2014-1-24</label>
+						<input type="email" class="form-control" placeholder="2013-1-24" disabled>
 					</div>
 					<button type="button" class="btn btn-primary btn-block">Submit</button>
 				</form>
 			</div>
 		</div>
+		<div class="col-sm-4">
+			<div class="basePanelshadow">
 
+				<img src="gogowisestyle/image/largeportrait.jpg" style="width: 100px;height: 100px;border-radius: 12px;">
+				<br/>
+				<br/>
+				<button type="button" class="btn btn-success">Change Logo</button>
+			</div>
+			<br/>
+			<div class="basePanelTextLeft">
+				
+				<h1 class = "courseSubject">Change Password</h1>
+				<div class="form-group">
+						<label>Old Password</label>
+						<input type="text" class="form-control"  placeholder="Old Password"></div>
+					<div class="form-group">
+						<label>New Password</label>
+						<input type="text" class="form-control"  placeholder="New Password"></div>
+					<div class="form-group">
+						<label>Repeat Password</label>
+						<input type="email" class="form-control"  placeholder="Repeat Password"></div>
+						<button type="button" class="btn btn-danger btn-block">Submit</button>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
