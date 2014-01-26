@@ -5,24 +5,37 @@
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="gogowisestyle/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="gogowisestyle/css/bootstrap.min.css">
-  <script src="gogowisestyle/js/bootstrap-datetimepicker.min.js"></script>
-  <link rel="stylesheet" href="gogowisestyle/css/bootstrap-datetimepicker.min.css">
 <script type="text/javascript">
-    $("#a").datetimepicker({
-        format: "dd MM yyyy - hh:ii"
-    });
+    $(document).ready(function(){
+
+      $.ajax({
+        type:"GET",
+        url:"questionList2.html",
+        dataType:"json",
+        success:function(data){
+          alert(data.vos);
+          // $.each(data.vos.function(key,info){
+
+          // });
+        },
+        error:function(){
+          alert("no data....");
+        }
+      });
+
+      // $.ajax({
+      //   type:"GET",
+      //   url:"questionList.html",
+      //   dataType:"json",
+      //   success:function(data){
+      //       alert(123);
+      //   };
+      // }); 
+    })
 </script>  
   <title>bind demo</title>
 </head>
 <body>
-  <br/>
-<div style="background-color: #fff;border-bottom-color: red; border-width: 1px;border-style: solid;border-color: #eee;">
-  123
-</div>
-<br/>
-<div style="height: 100px;background-color: #eee;border-style: solid;border-top-style: none;border-width: 1px;border-bottom-left-radius: 6px;border-bottom-right-radius: 6px;border-color: red;">
-  
-</div>
-http://137.132.153.215/listMaterial.html?courseId=10&typeId=4
+  <br/>  
 </body>
 </html>
