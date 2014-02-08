@@ -24,7 +24,7 @@
 		$(document).ready(function() { 
 		  	
 		  	stundioWrapper = new iScroll('stundioWrapper');
-			chatWrapper = new iScroll('chatWrapper');
+			   chatWrapper = new iScroll('chatWrapper');
 
 			$('input').iCheck({
 			    checkboxClass: 'icheckbox_square-green',
@@ -141,8 +141,7 @@
           	});
 
           	$("#btnEvent3").click(function(event){
-				getGirlOjbect().seletedQuestions(2);
-			});
+				alert(123);			});
 
           	$("#btnOpenFile").click(function(){
           		showFile(2);
@@ -290,7 +289,8 @@
 		{
 			$("#speechDraftPanle li").remove();
 			//Speech
-			$.getJSON("fileList2.html",function(data){
+			// $.getJSON("fileList2.html",function(data){
+         $.getJSON("listMaterial.html?typeId=4",{"courseId":$("#courseId").text()},function(data){
           		$.each(data.vos,function(key,info)
           		{
           			var icon_path = "";
@@ -385,8 +385,8 @@
 		{
 			$("#questionbankPanle li").remove();
 
-			$.getJSON("questionList2.html",function(data){
-				
+			//$.getJSON("questionList2.html",function(data){
+			$.getJSON("listMaterial.html?typeId=3",{"courseId":$("#courseId").text()},function(data){    
           		$.each(data.vos,function(key,info)
           		{
           			var icon_path = "gogowisestyle/image/icon_text.png";
@@ -963,7 +963,7 @@
 	<span id="currentName" style="display: none">shucan</span>
 	<span id="currentUserName" style="display: none">Scan</span>
 	<span id="currentimgPath" style="display: none">gogowisestyle/image/portrait5.jpg</span>
-
+  <span id="courseId" style="display: none">10</span>
 	<div id="top"></div>
 	<div class="container">
 		<div>
