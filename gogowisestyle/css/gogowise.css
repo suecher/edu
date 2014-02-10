@@ -102,8 +102,6 @@ body{
 	margin-top: 16px;
 }
 
-
-
 .thinlineGrayNomargin
 {
 	height: 1px;width: 100%; background-color: #e5e5e5;margin-top: 5px;margin-bottom: 5px;
@@ -1043,15 +1041,6 @@ a:hover .studioPortraitPanel p
 	margin-bottom: 4px;
 }
 
-.linegray1
-{
-	width: 80%;
-	height: 1px;
-	background-color: #999;
-	margin: 0 auto;
-	margin-top: 30px;
-}
-
 .searchContent
 {
 	text-align: center;
@@ -1328,11 +1317,4 @@ a:hover .searchrecommendedItem  img
 .popItme
 {
 	width: 250px;
-}
-
-.orgSalebanner
-{
-	border-radius: 6px;
-	width: 1140px;
-	height: 220px;
 }
