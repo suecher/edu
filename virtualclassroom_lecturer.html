@@ -14,6 +14,7 @@
 	<script src="gogowisestyle/js/messenger.min.js"></script>
 	<script src="gogowisestyle/js/icheck.min.js"></script>
 	<script src="gogowisestyle/js/Chart.min.js"></script>
+  <script scr="gogowisestyle/js/ajaxfileupload.js"></script>
 
 	<script type="text/javascript">
 		var stundioWrapper;
@@ -24,7 +25,7 @@
 		$(document).ready(function() { 
 		  	
 		  	stundioWrapper = new iScroll('stundioWrapper');
-			chatWrapper = new iScroll('chatWrapper');
+			   chatWrapper = new iScroll('chatWrapper');
 
 			$('input').iCheck({
 			    checkboxClass: 'icheckbox_square-green',
@@ -141,8 +142,7 @@
           	});
 
           	$("#btnEvent3").click(function(event){
-				getGirlOjbect().seletedQuestions(2);
-			});
+				alert(123);			});
 
           	$("#btnOpenFile").click(function(){
           		showFile(2);
@@ -182,8 +182,8 @@
           				$('#fileModal').modal('hide');
           			break;
           			case "question":
-						getQuestionInfo();
-						showQuestions();
+						      getQuestionInfo();
+						      showQuestions();
           			break;
           		}
           	});
@@ -215,7 +215,7 @@
           	$("#btnUploadspeech").click(function(){
           		if($('input[name=fileSpeech]').val() != "")
           		{
-          			
+          			 Uploadspeech();
           		}
           		else
           			alert("no,select file");
@@ -290,7 +290,8 @@
 		{
 			$("#speechDraftPanle li").remove();
 			//Speech
-			$.getJSON("fileList2.html",function(data){
+			// $.getJSON("fileList2.html",function(data){
+         $.getJSON("listMaterial.html?typeId=4",{"courseId":$("#courseId").text()},function(data){
           		$.each(data.vos,function(key,info)
           		{
           			var icon_path = "";
@@ -385,8 +386,8 @@
 		{
 			$("#questionbankPanle li").remove();
 
-			$.getJSON("questionList2.html",function(data){
-				
+			//$.getJSON("questionList2.html",function(data){
+			$.getJSON("listMaterial.html?typeId=3",{"courseId":$("#courseId").text()},function(data){    
           		$.each(data.vos,function(key,info)
           		{
           			var icon_path = "gogowisestyle/image/icon_text.png";
@@ -403,6 +404,30 @@
           		bindFileClick();
 			});
 		}
+
+    function Uploadspeech()
+    {
+      $.ajaxFileUpload
+            (
+                {
+                    url: 'uploadPptInit.html', 
+                    type: 'post',
+                    data: { fileuploadFileName: 'le_1.pptx', genFileName: '2014020911045964239.pptx' }, 
+                    secureuri: false, 
+                    fileElementId: 'fileSpeech',
+                    dataType: 'json',
+                    success: function (data, status) 
+                    {
+                        alert("上传成功");
+                    },
+                    error: function (data, status, e)
+                    {
+                        alert(e);
+                    }
+                }
+            )
+            return false;
+    }
 
 
 		function getQuestionInfo()
@@ -963,7 +988,7 @@
 	<span id="currentName" style="display: none">shucan</span>
 	<span id="currentUserName" style="display: none">Scan</span>
 	<span id="currentimgPath" style="display: none">gogowisestyle/image/portrait5.jpg</span>
-
+  <span id="courseId" style="display: none">10</span>
 	<div id="top"></div>
 	<div class="container">
 		<div>
@@ -1212,7 +1237,7 @@
 				</div>
 			</div>
 			<div style="text-align: center;">
-				<input type="file" name="fileSpeech" style="position:absolute; z-index:100; margin-left:-180px; font-size:35px;opacity:0;filter:alpha(opacity=0); margin-top:-5px;">			
+				<input type="file" name="fileSpeech" id="fileSpeech" style="position:absolute; z-index:100; margin-left:-180px; font-size:35px;opacity:0;filter:alpha(opacity=0); margin-top:-5px;">			
 				<span style="padding-right: 10px;color: red;">Or</span><button type="button" class="btn btn-success">Select a Local File</button>
 				<p class="help-block">doc,docx,pdf,xls,xlsx,ppt,pptx</p>
 				<button type="submit" class="btn btn-default" id="btnUploadspeech">Upload</button>

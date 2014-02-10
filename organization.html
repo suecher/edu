@@ -5,8 +5,7 @@
 	<title>Document</title>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('#modalReminder').modal("show");
-
+			
 			$('#btnBuy').click(function(){
 				$('#modalReminder').modal("show");
 			});
@@ -398,25 +397,50 @@
 	</div>
 </div>
 
-
 <div class="modal fade" id="modalReminder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="overflow:hidden;">
-	<div class="modal-dialog" style="width: 70%;height:60%;margin-top: 5%;background:rgba(255,255,255,.9);border-radius: 12px;">
+	<div class="modal-dialog" style="width: 1000px;height:580px;margin-top: 5%;background:rgba(255,255,255,.9);border-radius: 12px;">
 		<div style="font-size: 36px;color: #6E8B3D;text-align: center;font-family: 'Trebuchet MS', Helvetica, sans-serif;">BUY ALL COURSES</div>
 		<div style="text-align: center;color: #aaa;">(School Name)</div>
-		<div style="font-size: 12px;color: #aaa;text-align: center;margin-top: 30px;">Read the course catalogs at the schools you’re applying to and familiarize yourself with the offerings.</div>
+		<div style="font-size: 12px;color: #aaa;text-align: center;margin-top: 30px;">
+			Read the course catalogs at the schools you’re applying to and familiarize yourself with the offerings.
+		</div>
 		<div class="linegray1"></div>
 		<div class="row" style="margin-top: 30px;">
-			<p class="col-sm-3"></p>
-			
-			<div class="col-sm-2" style="text-align: center;">
-				<div style="border-top-left-radius: 6px;border-top-right-radius: 6px;height: 20px;background-color: #006400;width: 150px;margin: 0 auto;color: #fff;">1 Year</div>
-				<div style="border-radius: 8px;height: 200px;width: 150px;margin: 0 auto;background:rgba(106,182,0,.8);border-top-left-radius: 0px;border-top-right-radius: 0px"></div>
-			</div>
-			<div class="col-sm-2" style="text-align: center;">2</div>
-			<div class="col-sm-2" style="text-align: center;">3</div>
-			<p class="col-sm-3"></p>
+
+			<div class="col-sm-4" style="text-align: center;">
+				<img src="gogowisestyle/image/sale1.png">
+				<label style="width: 100px;">
+					<input type="radio" name="sale" value="0" >
+					<span style="font-size: 12px;font-weight: lighter;color: #aaa;">Select (1 Year)</span>
+				</label>
+		</div>
+		<div class="col-sm-4" style="text-align: center;">
+			<img src="gogowisestyle/image/sale2.png">
+			<label style="width: 100px;">
+				<input type="radio" name="sale" value="0" >
+				<span style="font-size: 12px;font-weight: lighter;color: #aaa;">Select (3 Month)</span>
+			</label>
+		</div>
+		<div class="col-sm-4" style="text-align: center;">
+			<img src="gogowisestyle/image/sale3.png">
+			<label style="width: 100px;">
+				<input type="radio" name="sale" value="0" >
+				<span style="font-size: 12px;font-weight: lighter;color: #aaa;">Select (1 Month)</span>
+			</label>
 		</div>
 	</div>
+	<div class="linegray1"></div>
+	<div style="font-size: 12px;font-weight: lighter;color: #aaa;text-align: center;width: 80%;margin: 0 auto;margin-top: 30px;margin-bottom: 30px;">
+
+		As well, there is some financial support available to each participant for career enhancements, such as enrolling in relevant courses, purchasing textbooks and supplies, and credential assessments.
+	</div>
+	<div class="row">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4"><button type="button" class="btn btn-primary btn-lg btn-block">Confirm Buy</button></div>
+		<div class="col-sm-4"></div>
+		
+	</div>
+</div>
 </div>
 </body>
 </html>

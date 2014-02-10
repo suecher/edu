@@ -8,32 +8,27 @@
 <script type="text/javascript">
     $(document).ready(function(){
 
-      $.ajax({
-        type:"GET",
-        url:"questionList2.html",
-        dataType:"json",
-        success:function(data){
-          alert(data.vos);
-          // $.each(data.vos.function(key,info){
-
-          // });
-        },
-        error:function(){
-          alert("no data....");
-        }
-      });
-
       // $.ajax({
       //   type:"GET",
-      //   url:"questionList.html",
+      //   url:"questionList2.html",
       //   dataType:"json",
       //   success:function(data){
-      //       alert(123);
-      //   };
-      // }); 
+      //     alert(data.vos);
+      //   },
+      //   error:function(){
+      //     alert("no data....");
+      //   }
+      // });
+
+      $.getJSON("videoList.html?typeId=3",{"course(Id":$("#courseId").text()},function(data){
+
+      });
+
     })
 </script>  
+
   <title>bind demo</title>
+  <span id="courseId">222</span>
 </head>
 <body>
   <br/>  
