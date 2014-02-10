@@ -24,8 +24,8 @@
 
 		$(document).ready(function() { 
 		  	
-		  	stundioWrapper = new iScroll('stundioWrapper');
-			   chatWrapper = new iScroll('chatWrapper');
+		  stundioWrapper = new iScroll('stundioWrapper');
+			chatWrapper = new iScroll('chatWrapper');
 
 			$('input').iCheck({
 			    checkboxClass: 'icheckbox_square-green',
@@ -142,7 +142,8 @@
           	});
 
           	$("#btnEvent3").click(function(event){
-				alert(123);			});
+				        
+            });
 
           	$("#btnOpenFile").click(function(){
           		showFile(2);
@@ -156,16 +157,8 @@
           		showQuestionsStudio();
           	});
 
-          	//查看问题结果
           	$("#btnQuestionResult").click(function(){
-          		
-          	});
-
-          	//提交选择题目;
-          	$("#btnQuestionResult").click(function(){
-          		$("#resultView").show();
-          		$("#questionsList").hide();
-          		getQuestionResult(24,16,2);
+          		getQuestionResult($('input[name="selectQuestion"]:checked').val());
           	});
 
           	$("#btnSelectFile").click(function(){
@@ -174,7 +167,7 @@
           		{
           			case "speech":
           				$('#fileModal').modal('hide');
-						seletedFile($("#currentfile").find(".selectfileid").text(),$("#currentfile").find(".selectfileNum").text());
+						      seletedFile($("#currentfile").find(".selectfileid").text(),$("#currentfile").find(".selectfileNum").text());
           			break;
           			case "video":
           				$('#fileModal').modal('hide');
@@ -184,6 +177,7 @@
           			case "question":
 						      getQuestionInfo();
 						      showQuestions();
+                  $("#btnSubmitQuestions").removeAttr("disabled");
           			break;
           		}
           	});
@@ -223,6 +217,8 @@
 
           	$("#btnSubmitQuestions").click(function(){
           		//alert($('input[name="selectQuestion"]:checked').val());
+              $("#questionsList").hide();
+              $("#btnSubmitQuestions").attr("disabled","disabled");
           		seletedQuestions();
           	});
 		 }); 
@@ -237,54 +233,34 @@
 		        return  document.getElementById("GirlEmbed");
 		    }
 		}
-		
-		// function getSpeechList()
-		// {
-		// 	$("#speechDraftPanle li").remove();
-		// 	//Speech
-		// 	$.getJSON("fileList.html",function(data){
-  //         		$.each(data,function(key,info)
-  //         		{
-  //         			var icon_path = "";
 
-  //         			switch(info["fileType"])
-  //         			{
-  //         				case "doc":
-  //         					icon_path = "gogowisestyle/image/icon_docx.png"
-  //         					break;
-  //         				case "docx":
-  //         					icon_path = "gogowisestyle/image/icon_docx.png"
-  //         					break;
-  //         				case "pdf":
-  //         					icon_path = "gogowisestyle/image/icon_pdf.png"
-  //         					break;
-  //         				case "xls":
-  //         					icon_path = "gogowisestyle/image/icon_xlsx.png"
-  //         					break;
-  //         				case "xlsx":
-  //         					icon_path = "gogowisestyle/image/icon_xlsx.png"
-  //         					break;
-  //         				case "ppt":
-  //         					icon_path = "gogowisestyle/image/icon_pptx.png"
-  //         					break;
-  //         				case "ppt":
-  //         					icon_path = "gogowisestyle/image/icon_pptx.png"
-  //         					break;
-  //         			}
 
-  //         			$("#speechDraftPanle").append("<li><a href='#'>"+
-		// 				 "<div class='fileItem'>"+
-		// 				 "<img class='fileicon' src='"+icon_path+"' />"+
-		// 				 "<p class='fileName'>"+info["fileName"]+"</p>"+
-		// 				 "<span class='fileDirectory'>"+info["fileDirectory"]+"</span>"+
-		// 				 "<span class='category'>"+info["category"]+"</span>"+
-		// 				 "<span class='pageNum'>"+info["pageNum"]+"</span>"+
-		// 				 "</div></a></li>");
-  //         		});
+    function getQuestionResult(questionId)
+    {
+        //var studentNum = $("#studionList li").length;
+        var studentNum = 20;
 
-  //         		bindFileClick();
-		// 	});
-		// }
+        $.ajax({
+          type:"GET",
+          //url:"displayQuestionResult.html",
+          url:"questionresult.html",
+          data:{"questionId":questionId,"courseClassId":1},
+          dataType:"json",
+          success:function(data)
+          {
+            $("#resultView").show();
+            $("#questionsList").hide();
+            var noresponseNum = studentNum - data.correctNumber - data.inCorrectNumber;
+            showQuestionResult(data.correctNumber,data.inCorrectNumber,noresponseNum);
+            $("#txtRight").text("Right:"+data.correctNumber);
+            $("#txtWrong").text("Right:"+data.inCorrectNumber);
+            $("#txtNoResponse").text("NoResponse:"+noresponseNum);
+          },
+          error:function(){
+            alert("no data...");
+          }
+        });
+    }
 		
 		function getSpeechList()
 		{
@@ -322,8 +298,6 @@
           					break;
           			}
 
-          			
-
           			$("#speechDraftPanle").append("<li><a href='#'>"+
 						 "<div class='fileItem'>"+
 						 "<img class='fileicon' src='"+icon_path+"' />"+
@@ -360,34 +334,12 @@
 			});
 		}
 
-		// function getQuestionList()
-		// {
-		// 	$("#questionbankPanle li").remove();
-		// 	$.getJSON("questionList.html",function(data){
-				
-  //         		$.each(data,function(key,info)
-  //         		{
-  //         			var icon_path = "gogowisestyle/image/icon_text.png";
-
-  //         			$("#questionbankPanle").append("<li><a href='#'>"+
-		// 				 "<div class='fileItem'>"+
-		// 				 "<img class='fileicon' src='"+icon_path+"' />"+
-		// 				 "<p class='fileName'>"+info["fileName"]+"</p>"+
-		// 				 "<span class='question'>"+info["questionID"]+"</span>"+
-		// 				 "<span class='category'>"+info["category"]+"</span>"+
-		// 				 "</div></a></li>");
-  //         		});
-
-  //         		bindFileClick();
-		// 	});
-		// }
-
 		function getQuestionList()
 		{
 			$("#questionbankPanle li").remove();
 
-			//$.getJSON("questionList2.html",function(data){
-			$.getJSON("listMaterial.html?typeId=3",{"courseId":$("#courseId").text()},function(data){    
+			$.getJSON("questionList2.html",function(data){
+			//$.getJSON("listMaterial.html?typeId=3",{"courseId":$("#courseId").text()},function(data){    
           		$.each(data.vos,function(key,info)
           		{
           			var icon_path = "gogowisestyle/image/icon_text.png";
@@ -430,26 +382,28 @@
     }
 
 
+
 		function getQuestionInfo()
 		{
 			$("#questionsList div").remove();
 
+      
 			$.ajax({
 				type:"GET",
-				url:"questionInfo.html",
+				url:"questionInfo2.html",
+        data:{"materialId":$("#currentfile").find(".selectQuestion").text()},
 				dataType:"json",
 				success:function(data){
 
-					$.each(data,function(key,info)
+					$.each(data.vos,function(key,info)
 					{
 						$("#questionsList").append("<div class='questionsItem'>"+
 						"<label>"+
-						"<input type='radio' name='selectQuestion' value='"+info["questionID"]+"'>"+
-						"<span class='questionsItemText'>"+info["content"]+"</span>"+
-						"<span class='questionid'>"+info["questionID"]+"</span>"+
+						"<input type='radio' name='selectQuestion' value='"+info["id"]+"'>"+
+						"<span class='questionsItemText'>"+info["description"]+"</span>"+
+						"<span class='questionid'>"+info["id"]+"</span>"+
 						"</label>"+
 						"</div>");
-						
 					});
 
 					$('input').iCheck({
@@ -491,7 +445,7 @@
 		 * @param wrong 答错人数
 		 * @param noresponse 没有应答
 		 */
-		function getQuestionResult(right,wrong,noresponse)
+		function showQuestionResult(right,wrong,noresponse)
 		{
 			var pieData = [
 				{
@@ -506,7 +460,6 @@
 					value : noresponse,
 					color : "#69D2E7"
 				}
-			
 			];
 
 			var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
@@ -690,8 +643,8 @@
 		{
 			$.globalMessenger().post({
           		message: content,
-				type: type,
-				showCloseButton: true
+				      type: type,
+				      showCloseButton: true
 			});		
 		}
 
@@ -828,12 +781,6 @@
 			getGirlOjbect().sendMessage(content);
 		}
 
-		
-		// function seletedQuestion()
-		// {
-		// 	if($('input[name="selectQuestion"]:checked').val() != undefined)
-		// 		getGirlOjbect().seletedQuestions($('input[name="selectQuestion"]:checked').val());
-		// }
 
 		//显示学生信息 name 学生名字,imgpath头像路径,content内容,bit 1左边 0右边
 		function ShowMessage(name,imgpath,content,bit)
@@ -1076,7 +1023,8 @@
 						<ul>
 							<li>
 								<ul id="studionList">
-									<!-- <li class="ui-state-default">
+
+									 <li class="ui-state-default">
 										<a href="#">
 											<div class="studioPortraitPanel">
 												<img src="gogowisestyle/image/bportrait7.jpg" alt="">
@@ -1103,7 +1051,7 @@
 											</div>
 										</a>
 										<span class="userId">u3</span>
-									</li>-->
+									</li>
 
 								</ul>
 								<div class="clearfix"></div>
@@ -1431,15 +1379,15 @@
 		<ul class="list-inline">
 			<li>
 				<div class="ColorlumpRight"></div>
-				<span class="ColorlumpText">Right:24</span>
+				<span class="ColorlumpText" id="txtRight">Right:24</span>
 			</li>
 			<li>
 				<div class="ColorlumpWrong"></div>
-				<span class="ColorlumpText">Wrong:16</span>
+				<span class="ColorlumpText" id="txtWrong">Wrong:16</span>
 			</li>
 			<li>
 				<div class="ColorlumpNoresponse"></div>
-				<span class="ColorlumpText">NoResponse:2</span>
+				<span class="ColorlumpText" id="txtNoResponse">NoResponse:2</span>
 			</li>
 		</ul>
 	</div>

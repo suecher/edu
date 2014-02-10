@@ -26,6 +26,7 @@
 		  	stundioWrapper = new iScroll('stundioWrapper');
 			chatWrapper = new iScroll('chatWrapper');
 
+
 			$('input').iCheck({
 			    checkboxClass: 'icheckbox_square-green',
 			    radioClass: 'iradio_square-blue',
@@ -145,7 +146,7 @@
           	});
 
           	$("#btnEvent3").click(function(event){
-				getGirlOjbect().askSpeak("1");
+				
           	});
 
 
@@ -165,7 +166,7 @@
           	});
 
           	$("#btnQuestionsStudio").click(function(){
-          		showQuestionsStudio();
+          		showQuestionsStudio(6);
           	});
 
           	//查看问题结果
@@ -175,8 +176,8 @@
 
 
           	$("#btnQuestion").click(function(){
-          		if($('input[name="questionid"]:checked').val() != undefined)
-          			getGirlOjbect().questionOver("");
+          		if($('input[name="studentQuestion"]:checked').val() != undefined)
+          			setQuestionResult($('input[name="studentQuestion"]:checked').val());
           	});
 
           	//提交选择题目;
@@ -188,8 +189,8 @@
 
 		 }); 
 		
-		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-		document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+		//document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+		//document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
 
 		function getGirlOjbect() {
 		    if (/msie/.test(navigator.userAgent.toLowerCase())) {
@@ -230,6 +231,23 @@
 			];
 
 			var myPie = new Chart(document.getElementById("canvas").getContext("2d")).Pie(pieData);
+		}
+
+		function setQuestionResult(result)
+		{
+			$.ajax({
+			  type: 'POST',
+			  url: "saveQuestionResult.html",
+			  data:{"questionId":$("#currentQuestionId").text(),"userId":"1","questionItemIndex":result,"courseClassId":"1"},
+			  dataType:"json",
+			  success: function(data)
+			  {
+			  	alert("提交成功");
+			  },
+			  error:function(){
+				alert("error....");
+			  }
+			});
 		}
 
 		function giveMIC()
@@ -402,39 +420,33 @@
 		{
 			$("#studentQuestionItem div").remove();
 
+			$("#currentQuestionId").text(id);
+
 			$.ajax({
 				type:"GET",
-				url:"questionItem.html",
+				url:"questionItem2.html",
+				//data:{"questionId":id},
 				dataType:"json",
 				success:function(data){
-
+					//alert(data.vo["description"]);
 					$("#studentQuestionItem").append("<div>"+
-					"<div class='questionsItemText'>"+data["subjectname"]+"</div>"+
-					"<span class='questionid'>"+data["questionID"]+"</span>"+
+					"<div class='questionsItemText'>"+data.vo["description"]+"</div>"+
+					"<span class='questionid'>"+data.vo["id"]+"</span>"+
 					"<div class='listanswer'></div>");
-
-					$.each(data.options,function(key,info){
+					var index =1;
+					$.each(data.vo.items,function(key,info){
 						$("#studentQuestionItem").find(".listanswer").append("<div style='margin-top:10px;'>"+
 						"<label class='answerItem'>"+
-						"<p>"+info["itemname"]+"</p>"+
-						"<input type='radio' name='"+info["value"]+"'>"+
-						"<span>"+info["itemtext"]+"</span>"+
+						// "<p>"+info["itemname"]+"</p>"+
+						"<input type='radio' name='studentQuestion' value='"+index+"'>"+
+						"<span style='display:none;'>"+index+"</span>"+
+						"<span>"+info+"</span>"+
 						"</label>"+
 						"</div>");
+						index++;
 					});
 
-					//alert(data["subjectname"]);
-					// $.each(data,function(key,info)
-					// {
-					// 	$("#questionsList").append("<div class='questionsItem'>"+
-					// 	"<label>"+
-					// 	"<input type='radio' name='selectQuestion' value='"+info["questionID"]+"'>"+
-					// 	"<span class='questionsItemText'>"+info["content"]+"</span>"+
-					// 	"<span class='questionid'>"+info["questionID"]+"</span>"+
-					// 	"</label>"+
-					// 	"</div>");
-					// });
-
+					
 					$('input').iCheck({
 					    checkboxClass: 'icheckbox_square-green',
 					    radioClass: 'iradio_square-blue',
@@ -660,6 +672,7 @@
 	<span id="currentName" style="display: none">shucan</span>
 	<span id="currentUserName" style="display: none">Scan</span>
 	<span id="currentimgPath" style="display: none">gogowisestyle/image/portrait5.jpg</span>
+	<span id="currentQuestionId" style="display: none"></span>
 
 	<div id="top"></div>
 
