@@ -7,8 +7,10 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("#btnLogin").click(function(event) {
+			$('#modalLogin').modal("show");
+		});
 		
-		$('#modalLogin').modal("show");		
 	})
 	
 </script>
@@ -67,10 +69,10 @@
 						
 					</li>
 					<li>
-						<a href="#">Sign up</a>
+						<a href="#" id="btnLogin">Sign up</a>
 					</li>
 					<li>
-						<a href="#">Log in</a>
+						<a href="login.html">Log in</a>
 					</li>
 				</ul>
 			</div>
