@@ -250,7 +250,7 @@
           type:"GET",
           //url:"displayQuestionResult.html",
           url:"questionresult.html",
-          data:{"questionId":questionId,"courseClassId":1},
+          //data:{"questionId":questionId,"courseClassId":1},
           dataType:"json",
           success:function(data)
           {
@@ -259,7 +259,7 @@
             var noresponseNum = studentNum - data.correctNumber - data.inCorrectNumber;
             showQuestionResult(data.correctNumber,data.inCorrectNumber,noresponseNum);
             $("#txtRight").text("Right:"+data.correctNumber);
-            $("#txtWrong").text("Right:"+data.inCorrectNumber);
+            $("#txtWrong").text("Wrong:"+data.inCorrectNumber);
             $("#txtNoResponse").text("NoResponse:"+noresponseNum);
           },
           error:function(){
