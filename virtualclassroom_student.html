@@ -166,7 +166,7 @@
           	});
 
           	$("#btnQuestionsStudio").click(function(){
-          		showQuestionsStudio(6);
+          		showQuestionsStudio(6,true);
           	});
 
           	//查看问题结果
@@ -178,6 +178,7 @@
           	$("#btnQuestion").click(function(){
           		if($('input[name="studentQuestion"]:checked').val() != undefined)
           			setQuestionResult($('input[name="studentQuestion"]:checked').val());
+          		$("#questionsStudentModal").modal('hide');
           	});
 
           	//提交选择题目;
@@ -242,7 +243,9 @@
 			  dataType:"json",
 			  success: function(data)
 			  {
-			  	alert("提交成功");
+			  	alert("success");
+			  	getGirlOjbect().submitAnswer();
+
 			  },
 			  error:function(){
 				alert("error....");
@@ -426,7 +429,7 @@
 			$.ajax({
 				type:"GET",
 				url:"questionItem2.html",
-				//data:{"questionId":id},
+				data:{"questionId":id},
 				dataType:"json",
 				success:function(data){
 					//alert(data.vo["description"]);
@@ -509,10 +512,16 @@
 			$('#fileModal').modal('show');
 		}
 
-		function showQuestionsStudio(id)
+		function showQuestionsStudio(id,isSubmit)
 		{
 			getQuestionInfo(id);
 			$("#questionsStudentModal").modal('show');
+
+			if(isSubmit)
+				$("#btnQuestion").removeAttr("disabled");
+			else
+				$("#btnQuestion").attr("disabled","disabled");
+			
 		}
 
 		//根据ID，State状态值（1，2，3）设置状态，bit是否需要排序到最上.

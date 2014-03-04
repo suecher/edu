@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -124,17 +124,17 @@
 				cancelStudentSpeak("u2");
           	});
 
-			$("#btnCloseBar").click(function(event){
-				$("#btnControlBar").hide('200', function() {
-					$("#btnControlBar").find('.userId').text("");
-				});
+    			  $("#btnCloseBar").click(function(event){
+    				  $("#btnControlBar").hide('200', function() {
+    					 $("#btnControlBar").find('.userId').text("");
+    				  });
           	});
           	
           	$("#btnEvent").click(function(event){
 				//getGirlOjbect().playVideo("xxxx");
           	});
 
-			$("#btnEvent2").click(function(event){
+			      $("#btnEvent2").click(function(event){
           		$("#studionList li a").bind("click",function(event){
           			var id = $(this).parent().find("span").text();
           			showControlBar(id,event.pageX,event.pageY);
@@ -150,6 +150,7 @@
           	});
 
           	$("#btnOpenQuestions").click(function(){
+              getQuestionInfo();
           		showQuestions();
           	});
 
@@ -194,7 +195,6 @@
           	$('#myTabFile a[href="#filesysQuestionbank"]').click(function(){
           		getQuestionList();
           	});
-          	//////////////
           	
           	$("#btnUploadquestion").click(function(){
           		if($('input[name=fileQuestion]').val() != "")
@@ -217,9 +217,11 @@
 
           	$("#btnSubmitQuestions").click(function(){
           		//alert($('input[name="selectQuestion"]:checked').val());
+              $("#QuestionItem").show();
               $("#questionsList").hide();
               $("#btnSubmitQuestions").attr("disabled","disabled");
           		seletedQuestions();
+              getQuestionItemInfo($('input[name="selectQuestion"]:checked').val());
           	});
 
             $("#btnAddVideo").click(function(){
@@ -261,6 +263,7 @@
             $("#txtRight").text("Right:"+data.correctNumber);
             $("#txtWrong").text("Wrong:"+data.inCorrectNumber);
             $("#txtNoResponse").text("NoResponse:"+noresponseNum);
+            getGirlOjbect().checkResult();
           },
           error:function(){
             alert("no data...");
@@ -343,6 +346,8 @@
 			});
 		}
 
+
+
 		function getQuestionList()
 		{
 			$("#questionbankPanle li").remove();
@@ -409,20 +414,58 @@
             return false;
     }
 
+    function getQuestionItemInfo(id)
+    {
 
+      $("#QuestionItem div").remove();
+
+      $.ajax({
+        type:"GET",
+        url:"questionItem2.html",
+        //data:{"questionId":id},
+        dataType:"json",
+        success:function(data){
+          //alert(data.vo["description"]);
+          $("#QuestionItem").append("<div>"+
+          "<div class='questionsItemText'>"+data.vo["description"]+"</div>"+
+          "<span class='questionid'>"+data.vo["id"]+"</span>"+
+          "<div class='listanswer' style='text-align:left;margin-left:20px;'></div>");
+          var index =1;
+          $.each(data.vo.items,function(key,info){
+            $("#QuestionItem").find(".listanswer").append("<div style='margin-top:10px;'>"+
+            "<label>"+
+            // "<p>"+info["itemname"]+"</p>"+
+            "<span style='display:none;'>"+index+"</span>"+
+            "<div><span style='color:#6ab600;'>"+index+":</span><span style='color:red;'>"+info+"</span></div>"+
+            "</label>"+
+            "</div>");
+            index++;
+          });
+
+          
+          $('input').iCheck({
+              checkboxClass: 'icheckbox_square-green',
+              radioClass: 'iradio_square-blue',
+              increaseArea: '20%' // optional
+            });
+        },
+        error:function(){
+          alert("no data....");
+        }
+      });
+    }
 
 		function getQuestionInfo()
 		{
+
 			$("#questionsList div").remove();
 
-      
 			$.ajax({
 				type:"GET",
 				url:"questionInfo2.html",
         data:{"materialId":$("#currentfile").find(".selectQuestion").text()},
 				dataType:"json",
 				success:function(data){
-
 					$.each(data.vos,function(key,info)
 					{
 						$("#questionsList").append("<div class='questionsItem'>"+
@@ -718,6 +761,7 @@
 			$("#questionsModal").modal('show');
 			$("#questionsList").show();
 			$("#resultView").hide();
+      $("#QuestionItem").hide();
 		}
 
 		function showFile(index)
@@ -1400,6 +1444,9 @@
 			</label>
 		</div> -->
 	</div>
+  <div id="QuestionItem" style="display: none;text-align: center;">
+    
+  </div>
 	<div id="resultView" style="display: none;text-align: center;">
 		<canvas id="canvas" height="450" width="450"></canvas>
 		<br/>
