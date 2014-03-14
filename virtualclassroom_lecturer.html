@@ -146,7 +146,7 @@
             });
 
           	$("#btnOpenFile").click(function(){
-          		showFile(2);
+          		showFile(1);
           	});
 
           	$("#btnOpenQuestions").click(function(){
@@ -421,11 +421,11 @@
 
       $.ajax({
         type:"GET",
-        url:"questionItem2.html",
-        //data:{"questionId":id},
+        url:"question.html",
+        data:{"questionId":id},
         dataType:"json",
         success:function(data){
-          //alert(data.vo["description"]);
+          
           $("#QuestionItem").append("<div>"+
           "<div class='questionsItemText'>"+data.vo["description"]+"</div>"+
           "<span class='questionid'>"+data.vo["id"]+"</span>"+
@@ -434,7 +434,7 @@
           $.each(data.vo.items,function(key,info){
             $("#QuestionItem").find(".listanswer").append("<div style='margin-top:10px;'>"+
             "<label>"+
-            // "<p>"+info["itemname"]+"</p>"+
+            
             "<span style='display:none;'>"+index+"</span>"+
             "<div><span style='color:#6ab600;'>"+index+":</span><span style='color:red;'>"+info+"</span></div>"+
             "</label>"+
@@ -975,7 +975,7 @@
   	#studionList li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 88px; height: 90px;  text-align: center; background-color: transparent;border-width: 0px;}
 
 	.fileList { list-style-type: none; margin: 0; padding: 0; width: 550px; }
-	.fileList li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 105px;   text-align: center; background-color: transparent;border-width: 0px;}
+	.fileList li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 105px;height: 180px;text-align: center; background-color: transparent;border-width: 0px;}
 
 	.listanswer { list-style-type: none; margin: 0; padding: 0; width: 550px; margin-top: 5px;}
 	.listanswer li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 95px;   text-align: center; background-color: transparent;border-width: 0px;}
@@ -1254,6 +1254,7 @@
 						</a>
 					</li>
 					-->
+          
 				</div>
 			</div>
 			<div style="text-align: center;">
