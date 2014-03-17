@@ -6,29 +6,18 @@
   <script src="gogowisestyle/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="gogowisestyle/css/bootstrap.min.css">
 <script type="text/javascript">
-    $(document).ready(function(){
-
-      // $.ajax({
-      //   type:"GET",
-      //   url:"questionList2.html",
-      //   dataType:"json",
-      //   success:function(data){
-      //     alert(data.vos);
-      //   },
-      //   error:function(){
-      //     alert("no data....");
-      //   }
-      // });
-
-      $.getJSON("videoList.html?typeId=3",{"course(Id":$("#courseId").text()},function(data){
-
-      });
-
-    })
+    $(document).ready(function(){ 
+    $("body").keydown(function(e){ 
+    var curKey = e.which; 
+    if(curKey == 13){ 
+      alert(123);
+    } 
+    }); 
+}); 
 </script>  
 
   <title>bind demo</title>
-  <span id="courseId">222</span>
+  <span id="courseId"></span>
 </head>
 <body>
   <br/>  

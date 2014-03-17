@@ -33,11 +33,18 @@
 			    increaseArea: '20%' // optional
 			  });
 
-			$("body").keydown(function() {
-             if (event.keyCode == "13") {
-                 $('#btnSendMsg').click();
-             }
-         	});
+			// $("body").keydown(function() {
+   //           if (event.keyCode == "13") {
+   //               $('#btnSendMsg').click();
+   //           }
+   //       	});
+
+      $("body").keydown(function(e){ 
+        var curKey = e.which; 
+        if(curKey == 13){ 
+          $('#btnSendMsg').click();
+        } 
+      });
 
 			//绑定单击
 			$("#studionList li a").bind("click",function(event){
